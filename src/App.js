@@ -20,6 +20,7 @@ import SocketTest from "./pages/chat/SocketTest";
 import StudyDetail from "./pages/study/StudyDetail";
 import StudyList from "./pages/study/StudyList";
 import StudyWrite from "./pages/study/StudyWrite";
+import Terms from "././pages/register/Terms";
 
 function App() {
   return (
@@ -32,10 +33,11 @@ function App() {
         <Route path="/AdminMemberList" element={<AdminMemberList />} />
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/FindInfo" element={<FindInfo />} />
-        <Route path="/EditInfo" element={<EditInfo />} />
-        <Route path="/CheckPwd" element={<CheckPwd />} />
+        <Route path="/findInfo" element={<FindInfo />} />
+        <Route path="/editInfo" element={<EditInfo />} />
+        <Route path="/checkPwd" element={<CheckPwd />} />
         <Route path="/studies" element={<StudyList />} />
         <Route path="/study/write" element={<StudyWrite />} />
         <Route exact path="/study/:studyId" element={<StudyDetail />} />

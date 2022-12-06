@@ -111,13 +111,22 @@ function Login() {
 
               <Link
                 to="/Register"
-                style={{ textDecoration: "none", margin: "10px" }}
+                className="linktoReg"
+                style={{
+                  textDecoration: "none",
+                  margin: "10px",
+                  color: "#7875b5",
+                }}
               >
                 Register
               </Link>
               <Link
                 to="/FindInfo"
-                style={{ textDecoration: "none", margin: "10px" }}
+                style={{
+                  textDecoration: "none",
+                  margin: "10px",
+                  color: "#7875b5",
+                }}
               >
                 Find Id/Pw
               </Link>

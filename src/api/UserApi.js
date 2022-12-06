@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// const DOMAIN = "http://localhost:8211/";
 const HEADER = { "Content-type": "application/json; charset=UTF-8" };
 
 const UserApi = {
@@ -35,6 +34,36 @@ const UserApi = {
       profileImage: profileImage,
     };
     return await axios.put("update", UpdateObj, HEADER);
+  },
+
+  // 회원정보 찾기(아이디찾기)
+  findId: async function (phone) {
+    const AccountInfo = {
+      phone: phone,
+    };
+    return await axios.post("findId", AccountInfo, HEADER);
+  },
+
+  // 회원정보 찾기(비밀번호찾기)
+  findPwd: async function (id, phone) {
+    const AccountInfo = {
+      userEmail: id,
+      phone: phone,
+    };
+    return await axios.post("findPwd", AccountInfo, HEADER);
+  },
+
+  // ID(Email) 중복체크
+  duplCheck: async function (id) {
+    const idCheck = {
+      userEmail: id,
+    };
+    return await axios.post("duplCheck", idCheck, HEADER);
+  },
+
+  // 회원탈퇴
+  delete: async function (userEmail) {
+    return await axios.delete(`delete/${userEmail}`, HEADER);
   },
 };
 

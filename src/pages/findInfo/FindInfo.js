@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+import UserApi from "../../api/UserApi";
 import styled from "styled-components";
 
 const Box = styled.div`
@@ -37,11 +38,29 @@ const Content = styled.div`
 `;
 
 function FindInfo() {
-  const [password, setPassword] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const [phone, setPhone] = useState("");
   const phoneRef = useRef();
   const [pwPhone, setPwPhone] = useState("");
   const phonePwRef = useRef();
+  const [isConId, setIsConId] = useState(false);
+  const [ConIdMessage, setConIdMessage] = useState("");
+
+  const onChangeId = (e) => {
+    const idCheck = e.target.value;
+    setUserEmail(idCheck);
+
+    const regExp =
+      /^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+    if (regExp.test(idCheck) !== true) {
+      setConIdMessage("이메일주소 형식이 올바르지 않습니다.");
+      setIsConId(false);
+    } else {
+      setConIdMessage("");
+      setIsConId(true);
+    }
+  };
 
   // 아이디찾기 - 휴대폰 번호 오토하이픈
   const onChangePhone = (e) => {
@@ -95,8 +114,26 @@ function FindInfo() {
     setPwPhone(e.target.value);
   };
 
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
+  const onClickFindId = async () => {
+    const res = await UserApi.findId(phone);
+    if (res.data !== null) {
+      console.log(res.data);
+      // window.alert("test");
+      window.alert(`아이디는 ${res.data.userEmail} 입니다.`);
+    } else {
+      window.alert("입력하신 정보를 확인해주세요.");
+    }
+  };
+
+  const onClickFindPwd = async () => {
+    const res = await UserApi.findPwd(userEmail, pwPhone);
+    if (res.data !== null) {
+      console.log(res.data);
+      // window.alert("test");
+      window.alert("입력하신 메일로 임시 비밀번호를 전송하였습니다.");
+    } else {
+      window.alert("입력하신 정보를 확인해주세요.");
+    }
   };
 
   return (
@@ -130,7 +167,13 @@ function FindInfo() {
                       onChange={onChangePhone}
                       className="find__input"
                     />
-                    <button className="submit_btn">submit</button>
+                    <button
+                      className="submit_btn"
+                      type="button"
+                      onClick={onClickFindId}
+                    >
+                      submit
+                    </button>
                   </div>
                 </Tab>
 
@@ -145,6 +188,8 @@ function FindInfo() {
                       type="text"
                       className="find__input"
                       placeholder="ID(EMAIL)"
+                      value={userEmail}
+                      onChange={onChangeId}
                     />
                     <input
                       type="text"
@@ -154,7 +199,13 @@ function FindInfo() {
                       value={pwPhone}
                       onChange={onChangePwPhone}
                     />
-                    <button className="submit_btn">submit</button>
+                    <button
+                      className="submit_btn"
+                      type="button"
+                      onClick={onClickFindPwd}
+                    >
+                      submit
+                    </button>
                   </div>
                 </Tab>
               </Tabs>

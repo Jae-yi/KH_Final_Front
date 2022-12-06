@@ -6,7 +6,14 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
+const sessioninfo = sessionStorage.getItem("userEmail");
+
 function OffcanvasExample() {
+  const onClickLogout = (e) => {
+    window.alert("로그아웃 되었습니다.");
+    sessionStorage.clear();
+  };
+
   return (
     <>
       {[false].map((expand) => (
@@ -32,6 +39,11 @@ function OffcanvasExample() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
+                  {sessioninfo !== null && (
+                    <Nav.Link href="/" onClick={onClickLogout}>
+                      로그아웃
+                    </Nav.Link>
+                  )}
                   <NavDropdown
                     title="마이페이지"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
@@ -63,8 +75,7 @@ function OffcanvasExample() {
             </Navbar.Offcanvas>
           </Container>
         </Navbar>
-      ))
-      }
+      ))}
     </>
   );
 }
