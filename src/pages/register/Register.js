@@ -57,7 +57,7 @@ const IdContainer = styled.div`
     font-weight: 700;
     display: flex;
     align-items: center;
-    width: 15%;
+    width: 13%;
     color: #4c489d;
     box-shadow: 0px 2px 2px #5c5696;
     cursor: pointer;
@@ -227,7 +227,7 @@ function Register() {
       }
 
       if (isDuplCheckYn === false) {
-        window.alert("ID(EMAIL)을 중복체크 해주세요.");
+        window.alert("ID(EMAIL)의 중복 여부를 체크해주세요.");
         return;
       }
 
@@ -369,9 +369,15 @@ function Register() {
                   onChange={onChecked}
                 />
                 <Link to="/Terms">
-                  <span style={{ marginLeft: "10px" }}>
+                  <label
+                    style={{
+                      textDecorationLine: "none",
+                      marginLeft: "10px",
+                      color: "#7875b5",
+                    }}
+                  >
                     Agree to terms & conditions
-                  </span>
+                  </label>
                 </Link>
               </div>
               <button

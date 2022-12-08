@@ -109,26 +109,27 @@ function Login() {
                 Log in now
               </button>
 
-              <Link
-                to="/Register"
-                className="linktoReg"
-                style={{
-                  textDecoration: "none",
-                  margin: "10px",
-                  color: "#7875b5",
-                }}
-              >
-                Register
+              <Link to="/Register" className="linktoReg">
+                <label
+                  style={{
+                    textDecoration: "none",
+                    margin: "10px 10px 20px 0px",
+                    color: "#7875b5",
+                  }}
+                >
+                  <div className="linktoReg">Register</div>
+                </label>
               </Link>
-              <Link
-                to="/FindInfo"
-                style={{
-                  textDecoration: "none",
-                  margin: "10px",
-                  color: "#7875b5",
-                }}
-              >
-                Find Id/Pw
+              <Link to="/FindInfo">
+                <label
+                  style={{
+                    textDecoration: "none",
+                    margin: "10px ",
+                    color: "#7875b5",
+                  }}
+                >
+                  Find Id/Pw
+                </label>
               </Link>
             </form>
             <div className="social-login">

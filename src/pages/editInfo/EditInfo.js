@@ -339,11 +339,15 @@ function EditInfo() {
               >
                 Submit
               </button>
+              <label
+                className="Withdraw"
+                style={{ margin: "10px", color: "#7875b5" }}
+                onClick={onDeleteUser}
+              >
+                Withdraw
+              </label>
             </form>
           </div>
-          <a href="#" className="Withdraw" onClick={onDeleteUser}>
-            Withdraw
-          </a>
         </Content>
       </Container>
     </Box>
